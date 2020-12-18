@@ -92,7 +92,7 @@ import org.jboss.logging.Logger;
 
 public class CustomMessageInterceptor implements Interceptor {
 
-    private static Logger log = Logger.getLogger(CustomMessageInterceptor.class);
+    private static final Logger log = Logger.getLogger(CustomMessageInterceptor.class);
 
     @Override
     public boolean intercept(Packet packet, RemotingConnection remotingConnection) throws ActiveMQException {
