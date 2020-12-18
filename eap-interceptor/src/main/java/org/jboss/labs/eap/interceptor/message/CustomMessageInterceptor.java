@@ -32,11 +32,23 @@ public class CustomMessageInterceptor implements Interceptor {
         return true;
     }
 }
+//$ ./standalone.sh -c int.xml --start-mode=admin-only
+//  ./subsystem=messaging-activemq/server=default:list-add(name=incoming-interceptors,value={name=>"org.jboss.labs.eap.interceptor.message.CustomMessageInterceptor",module=>"org.jboss.labs.eap.interceptor.message"})
+//{"outcome" => "success"}
 
 
-//
-//    ActiveMQBuffer buffer = getInnerMessage().getDataBuffer();
-//    int size = buffer.readInt();
-//    byte[] bytes = new byte[size];
-//   buffer.readBytes(bytes);
-//           payload = new Binary(bytes)
+/**
+ *
+ * <?xml version="1.0" encoding="UTF-8"?>
+ * <module xmlns="urn:jboss:module:1.1" name="org.jboss.labs.eap.interceptor.message">
+ *     <resources>
+ *         <resource-root path="eap-interceptor-1.0-SNAPSHOT.jar"/>
+ *     </resources>
+ *     <dependencies>
+ *         <module name="org.apache.activemq.artemis"/>
+ *         <module name="org.jboss.logging"/>
+ *     </dependencies>
+ * </module>
+ *
+ *
+ */
