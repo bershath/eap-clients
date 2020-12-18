@@ -31,4 +31,38 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.jboss.labs.eap.interceptor.message</groupId>
+                                    <artifactId>eap-interceptor</artifactId>
+                                    <version>1.0-SNAPSHOT</version>
+                                    <overWrite>true</overWrite>
+                                    <!-- outputDirectory>/home/bershath/apps/workspaces/intellij/amq-clients-->
+                                    <!--destFileName>optional-new-name.jar</destFileName-->
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>/home/bershath/apps/jboss/7/73/jboss-eap-7.3.4/modules/org/jboss/labs/eap/interceptor/message/main</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
