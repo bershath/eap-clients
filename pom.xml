@@ -12,6 +12,7 @@
         <module>eap-mdbq</module>
         <module>eap-jms</module>
         <module>eap-timers</module>
+        <module>eap-timers-jmx</module>
     </modules>
 
     <properties>
