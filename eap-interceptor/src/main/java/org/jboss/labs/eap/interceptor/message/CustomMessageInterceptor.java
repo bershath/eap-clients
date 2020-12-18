@@ -41,7 +41,7 @@ import org.jboss.logging.Logger;
  *  Configuration:
  *  The easiest is to define a module in the EAP subsystem :
  *  The module.xml needs to be placed along with the packaged jar in the 'main' folder of the module.
- *  The module.xml should look as follows:
+ *  The module.xml should look identical to the following:
  *
  * <?xml version="1.0" encoding="UTF-8"?>
  * <module xmlns="urn:jboss:module:1.1" name="org.jboss.labs.eap.interceptor.message">
