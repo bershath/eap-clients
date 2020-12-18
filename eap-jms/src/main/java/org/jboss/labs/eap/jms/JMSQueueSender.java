@@ -12,9 +12,9 @@ import javax.naming.NamingException;
 
 public class JMSQueueSender {
 
-    private static final String queueName = "A";
+    private static final String queueName = "exampleQueue";
     private static final String connectionFactoryName = "jms/RemoteConnectionFactory";
-    private static final int numOfMessages = 1;
+    private static final int numOfMessages = 200;
     private final String jmsUser = "admin";
     private final String jmsPassword = "jboss10)";
 

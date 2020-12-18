@@ -9,25 +9,26 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>eap-jms</artifactId>
-    <groupId>org.jboss.labs.eap.jms</groupId>
+    <artifactId>eap-interceptor</artifactId>
+    <groupId>org.jboss.labs.eap.interceptor.message</groupId>
     <version>1.0-SNAPSHOT</version>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.jboss.eap/wildfly-client-all -->
         <dependency>
             <groupId>org.apache.activemq</groupId>
-            <artifactId>artemis-core-client</artifactId>
+            <artifactId>artemis-core-client-all</artifactId>
             <version>2.9.0.redhat-00002</version>
         </dependency>
         <dependency>
-            <groupId>org.jboss.eap</groupId>
-            <artifactId>wildfly-client-all</artifactId>
-            <version>7.3.4.GA-redhat-00003</version>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.3.2.Final-redhat-00001</version>
         </dependency>
     </dependencies>
+
 </project>
