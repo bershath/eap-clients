@@ -4,14 +4,14 @@ import org.apache.activemq.artemis.api.core.ActiveMQException;
 import org.apache.activemq.artemis.api.core.ICoreMessage;
 import org.apache.activemq.artemis.api.core.Interceptor;
 import org.apache.activemq.artemis.core.protocol.core.Packet;
-import org.apache.activemq.artemis.core.protocol.core.impl.wireformat.MessagePacket;
+import org.apache.activemq.artemis.core.protocol.core.impl.wireformat.SessionReceiveLargeMessage;
 import org.apache.activemq.artemis.spi.core.protocol.RemotingConnection;
 import org.jboss.logging.Logger;
 /**
  *
  * @author  :   Tyronne W
  * @since   :   13-09-2021
- * @version :   1.0
+ * @version :   1.1
  *
  * This interceptor intercepts outgoing packets from the broker to filter zero byte length large-messages:
  *      - Obtains the destination details
@@ -76,14 +76,12 @@ public class LargeMessageInterceptor implements Interceptor {
     public boolean intercept(Packet packet, RemotingConnection remotingConnection) throws ActiveMQException {
         log.trace(Interceptor.class.getName() + " called");
         boolean healthyMessage = true;
-        if(packet instanceof MessagePacket ){
-            MessagePacket messagePacket = (MessagePacket) packet;
-            ICoreMessage iCoreMessage = messagePacket.getMessage();
-            // The sanity check would be performed against the large messages, omitting standard messages
-            if(iCoreMessage.isLargeMessage()){
-                if(iCoreMessage.getBodyBufferSize() == 0)
-                    healthyMessage = false;
-                    log.warn("Zero byte length message detected with messageID " + iCoreMessage.getMessageID() + " destination " + iCoreMessage.getAddress());
+        if(packet instanceof SessionReceiveLargeMessage){
+            SessionReceiveLargeMessage sessionReceiveLargeMessage = (SessionReceiveLargeMessage) packet;
+            ICoreMessage iCoreMessage = sessionReceiveLargeMessage.getMessage().toCore();
+            if(sessionReceiveLargeMessage.getLargeMessageSize() == 0 ){
+               log.warn("Zero byte length message detected with messageID " + iCoreMessage.getMessageID() + " destination " + iCoreMessage.getAddress());
+               healthyMessage = false;
             }
         }
         return healthyMessage;
