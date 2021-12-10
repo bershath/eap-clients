@@ -89,7 +89,7 @@ public class ArtemisConsumer implements MessageListener {
             TextMessage textMessage = (TextMessage) message;
             System.out.println(" MSG rcvd " + textMessage.getJMSMessageID() + " at : " +  dateFormat.format(new Date(System.currentTimeMillis())));
             Thread.sleep(30);
-            throw new RuntimeException("Test Error Occured");
+            //throw new RuntimeException("Test Error Occured");
         } catch (JMSException | InterruptedException e) {
             e.printStackTrace();
         }
