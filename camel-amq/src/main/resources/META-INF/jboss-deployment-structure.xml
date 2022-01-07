@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <deployment>
+        <dependencies>
+            <module name="org.apache.activemq.artemis" export="true"/> <!-- have export=true if the deployment is an ear if you want all sub deployments to see it without having to list each sub deployment -->
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>
