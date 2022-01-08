@@ -15,20 +15,23 @@ import javax.jms.ConnectionFactory;
 @ContextName("amq-camel-context")
 public class CamelAMQSender extends RouteBuilder {
     /**
-     * <b>Called on initialization to build the routes using the fluent builder syntax.</b>
-     * <p/>
-     * This is a central method for RouteBuilder implementations to implement the routes using the Java fluent builder
-     * syntax.
      *
-     * @throws Exception can be thrown during configuration
+     * @author  : Tyronne
+     * @since   : 08-01-2022
+     * @version : 1.0
+     *
+     * This application would move messages from a destination deployed in EAP 7.3.10 to
+     * an external AMQ 7.9.1 instance using Camel.
+     *
      */
 
     @Resource (mappedName = "java:/JmsXA")
     private ConnectionFactory connectionFactory;
 
-    public static final String userName = "admin";
-    public static final String password = "jboss100";
-    public static final String url = "tcp://localhost:61616?jms.watchTopicAdvisories=false&maxReconnectAttempts=3";
+    //Connection URL and credentials for the ActiveMQ Artemis component
+    private final String userName = "admin";
+    private final String password = "jboss100";
+    private final String url = "tcp://localhost:61616?jms.watchTopicAdvisories=false&maxReconnectAttempts=3";
 
     @Override
     public void configure() throws Exception {
@@ -36,6 +39,9 @@ public class CamelAMQSender extends RouteBuilder {
         jmsComponent.setConnectionFactory(connectionFactory);
         getContext().addComponent("jms", jmsComponent);
 
+        // Remote ActiveMQ Artemis broker component.
+        // The ActiveMQConnectionFactory class was not exposed by the EAP server,
+        // using the jboss-deployment-structure to achieve this
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(url,userName,password);
         JmsComponent artemisComponent = new JmsComponent();
         artemisComponent.setConnectionFactory(activeMQConnectionFactory);
