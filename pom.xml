@@ -14,6 +14,10 @@
         <module>eap-timers</module>
         <module>eap-timers-jmx</module>
         <module>eap-interceptor</module>
+        <module>eap-camel</module>
+        <module>camel-amq</module>
+        <module>eap-camel-proc</module>
+        <module>came-amq-consumer</module>
     </modules>
 
     <properties>
