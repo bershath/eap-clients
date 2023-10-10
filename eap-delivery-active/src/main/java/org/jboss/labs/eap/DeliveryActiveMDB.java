@@ -10,6 +10,7 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
+import javax.transaction.UserTransaction;
 
 @MessageDriven(
         activationConfig = {
@@ -26,6 +27,7 @@ public class DeliveryActiveMDB implements MessageListener {
     private static Logger log = Logger.getLogger(DeliveryActiveMDB.class);
     @Override
     public void onMessage(Message message) {
+
         if (message instanceof TextMessage){
             try {
                 log.info(message.getBody(String.class));
